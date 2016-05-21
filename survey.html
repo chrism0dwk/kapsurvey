@@ -6,38 +6,67 @@
         <link rel="stylesheet" href="css/base.css" type="text/css" />
     </head>
     <body>
-        <div id="container">
+      <div id="container">
+	<div id="header">
           <h1>Farming, Feeding, and Forecasting</h1>
-	  <div id="question">
-	   
-	  </div>
-	  <form id="qu-form">
+	</div>
+
+	<div class="page" id="page-1">
+	  <form>
+	    <p>Welcome to the Farming, Feeding, and Forecasting Knowledge, Attitudes, and Perceptions survey.</p>
+	    <p>Please begin by telling us your name and role within agriculture.</p>
 	    <p>
-	      <caption>Name:</caption><input id="qu-form-name" type="text"/>
+	      <label>Name:</label><input id="qu-form-name" type="text"/>
 	    </p>
 	    <p>
 	      <label>Role:</label><input id="qu-form-role" type="text"/>
 	    </p>
-	    <div id="question-text">
-	      Please list up to 10 risks to a smallholder's livelihood in sub-Saharan Africa over the next 5 years:
-	    </div>
-	    </form>
-            <form id="todo-form">
-                <input id="todo" type="text" />
-                <input id="todo-submit" type="submit" value="Add to List">
-            </form>
-            <ul id="show-items"></ul>
-            <a href="#" id="clear-all">Clear All</a>
-	    <form id="form-submitter">
-	      <input id="next-button" type="submit" value="Next">
-	    </form>
+	  </form>
+	  <form class="submit" id="page1-submit">
+	    <input id="page1-submit" type="submit" value="Next">
+	  </form>
+	</div>
 
+	
+	<div class="page" id="page-2">
+	  <p>Please list up to 10 risks to a smallholder's livelihood in sub-Saharan Africa over the next 5 years:</p>
+          <form id="freelist-form">
+            <input id="freelist-item" type="text" />
+            <input id="freelist-item-submit" type="submit" value="Add to List">
+          </form>
+          <ul id="show-freelist-items"></ul>
+	  <form class="submit" id="page2-submit">
+	    <input id="page2-submit" type="submit" value="Next">
+	  </form>
         </div>
+
+	<div class="page uploader" id="page-3">
+	  <p>Now please rank your risks by dragging, putting the risk you consider most important at the top.</p>
+	  <h2 class="sort-order">Most important</h2>
+	  <ul id="rank-freelist-items"></ul>
+	  <h2 class="sort-order">Least important</h2>
+	  <form class="submit" id="page3-submit">
+	    <input id="page3-submit-button" type="submit" value="Submit"><span id='page3-spinner'></span>
+	  </form>
+	</div>
+
+	<div class="page" id="page-4">
+	  <p>Thank you, <span id='name'></span>, for taking part in this survey.</p>
+	  <form class="submit" id="page4-submit">
+	    <input id="page4-submit-button" type="submit" value="Start over">
+	  </form>
+	</div>
+	
+	<div id='colophon'>
+	  <p>Disclaimer: please note that this survey is unofficial.  Any information stored is for internal use by the Farming, Feeding, and Forecasting team, and will not be used for publication.</p>
+	</div>
+		    
 	<script src="js/jquery-1.4.4.min.js"></script>
 	<script src="js/jquery-ui-1.8.7.custom.min.js"></script>
         <script src="js/jquery.inlineedit.js"></script>
         <script src="js/pubsub.js"></script>
-        <!--script src="js/getPathPlus.min.js"></script-->
+	<script src="js/uuid.js"></script>
+        <script src="js/spin.min.js"></script>
         <script src="js/base.js"></script>
     </body>
 </html>
