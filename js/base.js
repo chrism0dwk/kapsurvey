@@ -62,9 +62,7 @@ $(function() {
     		  'role' : $role.val(),
     		  'risks' : packRisks(orderList),
     		};
-    	if(sendConfirm()) {
-    	    sendJSON(d);
-    	}
+    	sendJSON(d);
     }
 
     var spinner = new Spinner();
