@@ -115,13 +115,23 @@ $(function() {
 	for( j = 0, k = orderList.length; j < k; j++) {
 	    $itemList.append(
 		"<li class='draggable' id='" + orderList[j] + "'>"
-		    + "<span>" 
+		    + "<span class='rank'>"
+		    + (j + 1)
+		    + "</span>. <span>"
 		    + localStorage.getItem(orderList[j]) 
 		    + "</span></li>"
 	    );
 	}
 	$itemList.sortable({
 	    disabled: false,
+	    stop: function() {
+		$.publish('/regenerate-list/', []);
+		var listItems = $('li.draggable').find('span.rank');
+		var k=0;
+		for(k=0; k<listItems.length; k++) {
+		    $(listItems[k]).text(k+1);
+		}
+	    }
 	});
     });
 
@@ -149,6 +159,11 @@ $(function() {
 	disabled: true,
 	stop: function() {
 	    $.publish('/regenerate-list/', []);
+	    listItems = $('li');
+	    k=1;
+	    for(k=1; k<=listItems.length; k++) {
+		listItems[k].$('.rank').text(k);
+	    }
 	}
     });
     
