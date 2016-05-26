@@ -181,6 +181,13 @@ $(function() {
     
     // Subscribes
     $.subscribe('/add/', function() {
+
+	// Trap any attempted additions beyond 10 items
+	if(i > 10) {
+	    alert('Maximum 10 risks allowed.');
+	    return;
+	}
+	
 	if ($newItem.val() !== "") {
 	    // Take the value of the input field and save it to localStorage
 	    localStorage.setItem( 
@@ -256,5 +263,6 @@ $(function() {
 
     // Clear storage to begin
     $.publish('/clear-all/',[]);
+    i = Number(localStorage.getItem('item-counter')) + 1;
 });
 
