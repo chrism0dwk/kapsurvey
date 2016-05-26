@@ -24,7 +24,8 @@ $(function() {
 	$clearAll = $('#clear-all'),
 	$newItem = $('#freelist-item'),
 	order = [],
-	orderList;
+	orderList,
+	maxRisks = 10;
 
     $('.page').hide();
     $('#page-1').show();
@@ -51,7 +52,8 @@ $(function() {
 	var $todoItemLi = $('#rank-freelist-items li')
 	var d = {};
 	$todoItemLi.each(function(index) {
-	    d[index] = $( this ).text().split(" ")[0];
+	    var listItem = $( this ).find('span.risk')[0];
+	    d[index] = $( listItem ).text()[0];
 	});
 	return d;
     }
@@ -117,7 +119,7 @@ $(function() {
 		"<li class='draggable' id='" + orderList[j] + "'>"
 		    + "<span class='rank'>"
 		    + (j + 1)
-		    + "</span>. <span>"
+		    + "</span>. <span class='risk'>"
 		    + localStorage.getItem(orderList[j]) 
 		    + "</span></li>"
 	    );
@@ -198,8 +200,8 @@ $(function() {
     $.subscribe('/add/', function() {
 
 	// Trap any attempted additions beyond 10 items
-	if(i > 10) {
-	    alert('Maximum 10 risks allowed.');
+	if(i > maxRisks) {
+	    alert('Maximum ' + maxRisks + ' risks allowed.');
 	    return;
 	}
 	
